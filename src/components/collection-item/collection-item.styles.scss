@@ -1,14 +1,18 @@
 .collection-item {
-  width: 22%;
+  width: 48%;
   display: flex;
   flex-direction: column;
   height: 350px;
   align-items: center;
 
+  @media (min-width: 800px) {
+    width: 23%;
+  }
+
   .image {
     width: 100%;
     height: 95%;
-    background-image: url('../../assets/img/DIVINE-GLOBAL.gif');
+    background-image: url(../../assets/img/logo.png);
     background-size: cover;
     background-position: center;
     margin-bottom: 5px;
@@ -29,5 +33,8 @@
     .price {
       width: 10%;
     }
+  }
+
+  @media screen and (min-width: 400px) {
   }
 }
