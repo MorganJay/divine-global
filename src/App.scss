@@ -1,9 +1,40 @@
+@font-face {
+  font-family: 'Benecarlo';
+  src: url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Medium.otf);
+  font-weight: medium;
+}
+
+@font-face {
+  font-family: 'Benecarlo';
+  src: url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Bold.otf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Benecarlo';
+  src: url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-MediumItalic.otf);
+  font-style: italic;
+  font-weight: medium;
+}
+
+@font-face {
+  font-family: 'Benecarlo';
+  src: url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Book.otf);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Benecarlo';
+  src: url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Italic.otf);
+  font-weight: italic;
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Benecarlo';
   padding: 20px 60px;
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
 }
