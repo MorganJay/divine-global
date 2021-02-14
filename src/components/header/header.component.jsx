@@ -1,14 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/img/crown.svg';
-import Logopng from '../../assets/img/logo.png';
+
+import Logo from '../../assets/img/DIVINE GLOBAL.gif';
 import './header.component.styles.scss';
 
 const Header = () => (
   <div className="header">
-    <Link to="/">
-      {/* <Logo className="logo" title="Home Page" /> */}
-      <img src={Logopng} alt="Logo" title="Home Page" className="logo" width="80" height="59"/>
+    <Link to="/" className="logo-container">
+      <img
+        src={Logo}
+        alt="Logo"
+        title="Home Page"
+        className="logo"
+        width="100"
+      />
     </Link>
     <div className="options">
       <Link className="option" to="/shop">

@@ -1,0 +1,17 @@
+.sign-in {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+
+  span {
+    color: grey;
+  }
+
+  .title {
+    margin: 10px 0;
+  }
+
+  @media (min-width: 800px) {
+    width: 30vw;
+  }
+}

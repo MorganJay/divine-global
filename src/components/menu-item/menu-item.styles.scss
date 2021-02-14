@@ -1,8 +1,8 @@
 .menu-item {
-  min-width: 33%;
+  width: 33%;
   height: 250px;
-  flex: 1 0 auto;
   display: flex;
+  flex: 1 1 auto;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
