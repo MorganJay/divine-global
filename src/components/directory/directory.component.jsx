@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import MenuItem from '../menu-item/menu-item.component';
+
+
 import './directory.styles.scss';
 
 class Directory extends Component {
@@ -22,7 +24,7 @@ class Directory extends Component {
           linkUrl: 'office',
         },
         {
-          title: 'COMPUTER ACCESSORIES',
+          title: 'COMPUTERS AND ACCESSORIES',
           imageUrl:
             'https://images.unsplash.com/photo-1551739440-5dd934d3a94a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fGNvbXB1dGVyfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60://i.ibb.co/0jqHpnp/sneakers.png',
           id: 3,
