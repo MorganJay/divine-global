@@ -12,7 +12,7 @@
   }
 
   .options {
-    width: 50%;
+    width: 60%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -20,6 +20,7 @@
 
     .option {
       padding: 10px 15px;
+      cursor: pointer;
     }
   }
 }
