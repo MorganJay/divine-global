@@ -1,7 +1,7 @@
 .sign-in {
-  width: 425px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 3em;
 
   span {
     color: grey;
@@ -11,12 +11,8 @@
     margin: 10px 0;
   }
 
-  .buttons{
+  .buttons {
     display: flex;
     justify-content: space-between;
-  }
-
-  @media (min-width: 800px) {
-    width: 430px;
   }
 }

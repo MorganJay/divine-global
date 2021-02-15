@@ -1,17 +1,17 @@
 .menu-item {
-  width: 100%;
+  // width: 100%;
   height: 250px;
   display: flex;
-  flex: 1 0 auto;
+  flex: 1 1 48%;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
   margin: 0 7.5px 15px;
   overflow: hidden;
 
-  @media (min-width: 800px) {
-    width: 33%;
-  }
+  // @media (min-width: 800px) {
+  //   width: 33%;
+  // }
 
   &:hover {
     cursor: pointer;

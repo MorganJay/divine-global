@@ -7,14 +7,14 @@ import Header from './components/header/header.component.jsx';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      currentUser: null,
+      currentUser: null
     };
   }
 
@@ -22,10 +22,22 @@ class App extends Component {
 
   componentDidMount() {
     // open subscription between our app and Firebase
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      // user authentication object on sign in from Google api when a user is authenticated
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
 
-      console.log(user);
+        // sends snapshot of data that is currently being stored in our db
+        userRef.onSnapshot(snapshot => {
+          this.setState({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data()
+            }
+          });
+          console.log(this.state)
+        });
+      } else this.setState({ currentUser: userAuth });
     });
   }
 

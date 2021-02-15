@@ -1,12 +1,16 @@
 .collection-item {
-  width: 48%;
+  // width: 48%;
   display: flex;
   flex-direction: column;
   height: 350px;
   align-items: center;
+  flex: 1 1 15em;
+  // @media (min-width: 800px) {
+  //   width: 23%;
+  // }
 
-  @media (min-width: 800px) {
-    width: 23%;
+  &:nth-child(even) {
+    margin-left: 1em;
   }
 
   .image {
@@ -24,9 +28,10 @@
     display: flex;
     justify-content: space-between;
     font-size: 18px;
+    align-items: baseline;
 
     .name {
-      width: 70%;
+      width: 75%;
       margin-bottom: 15px;
     }
   }
