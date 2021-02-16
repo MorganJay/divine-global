@@ -1,7 +1,7 @@
 .sign-in {
   display: flex;
   flex-direction: column;
-  margin-bottom: 3em;
+  margin-bottom: 5em;
 
   span {
     color: grey;
@@ -14,5 +14,7 @@
   .buttons {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    height: 52px;
   }
 }
