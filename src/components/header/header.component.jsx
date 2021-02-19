@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { auth } from '../../firebase/firebase.utils';
 
-import Logo from '../../assets/img/DIVINE GLOBAL.gif';
+import Logo from '../../assets/img/DIVINEGLOBAL-removebg-preview.png';
 import './header.component.styles.scss';
 
 const Header = ({ currentUser }) => (

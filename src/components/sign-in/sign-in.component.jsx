@@ -46,6 +46,7 @@ class SignIn extends Component {
             label="Email Address"
             required
           />
+          
           <FormInput
             type="password"
             name="password"
