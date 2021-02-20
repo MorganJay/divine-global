@@ -1,9 +1,7 @@
-$sub-color: grey;
-$main-color: black;
-
+@import '../../_variables';
 @mixin shrinkLabel {
-  top: -14px;
-  font-size: 12px;
+  transform: translateY(-30px) translateX(-5px);
+  font-size: 14px;
   color: $main-color;
 }
 
@@ -13,7 +11,7 @@ $main-color: black;
 
   .form-input {
     background: none;
-    background-color: white;
+    background-color: $white;
     color: $sub-color;
     font-size: 18px;
     padding: 10px 10px 10px 5px;
@@ -28,8 +26,16 @@ $main-color: black;
       outline: none;
     }
 
-    &:focus ~ .form-input-label {
-      @include shrinkLabel();
+    &::placeholder {
+      opacity: 0;
+    }
+
+    &:focus,
+    &:valid,
+    &:not(:placeholder-shown) {
+      ~ .form-input-label {
+        @include shrinkLabel();
+      }
     }
   }
 

@@ -60,6 +60,7 @@ class SignUp extends Component {
             value={displayName}
             onChange={this.handleChange}
             label="Display Name"
+            placeholder="Display Name"
             required
           />
           <FormInput
@@ -68,6 +69,7 @@ class SignUp extends Component {
             value={email}
             onChange={this.handleChange}
             label="Email Address"
+            placeholder="Email Address"
             required
           />
           <FormInput
@@ -76,6 +78,7 @@ class SignUp extends Component {
             value={password}
             onChange={this.handleChange}
             label="Password"
+            placeholder="Password"
             required
           />
           <FormInput
@@ -84,6 +87,7 @@ class SignUp extends Component {
             value={confirmPassword}
             onChange={this.handleChange}
             label="Confirm Password"
+            placeholder="Confirm"
             required
           />
           <Button type="submit">SIGN UP</Button>
