@@ -90,7 +90,7 @@ class SignUp extends Component {
             placeholder="Confirm"
             required
           />
-          <Button type="submit">SIGN UP</Button>
+          <Button type="submit" border>SIGN UP</Button>
         </form>
       </div>
     );
