@@ -1,0 +1,57 @@
+@import '../../variables';
+
+.checkout-page {
+  width: 90%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto 0;
+
+  .checkout-header {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgrey;
+
+    .header-block {
+      width: 23%;
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        margin-left: 10px;
+      }
+
+      &:nth-child(4) {
+        margin-left: 5px;
+      }
+
+      &:last-child {
+        width: 8%;
+        margin-right: 18px;
+      }
+    }
+  }
+
+  .total {
+    margin-top: 30px;
+    margin-left: auto;
+    font-size: 36px;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    width: 55%;
+
+    .checkout-header {
+      .header-block {
+        &:nth-child(2) {
+          margin-left: 5px;
+        }
+        &:last-child {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

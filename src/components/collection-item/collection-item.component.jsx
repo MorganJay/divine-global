@@ -8,7 +8,6 @@ import './collection-item.styles.scss';
 
 const CollectionItem = ({ item, addItem }) => {
   const { name, price, imageUrl } = item;
-
   return (
     <div className="collection-item">
       <div className="image" style={{ backgroundImage: `url(${imageUrl})` }} />
@@ -16,7 +15,12 @@ const CollectionItem = ({ item, addItem }) => {
         <span className="name">{name}</span>
         <span className="price">&#8358;{price}</span>
       </div>
-      <Button onClick={() => addItem(item)} inverted>
+      <Button
+        onClick={() => {
+          addItem(item);
+        }}
+        inverted
+      >
         Add to Cart
       </Button>
     </div>
@@ -27,4 +31,4 @@ const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item))
 });
 
-export default connect(null, mapDispatchToProps)(CollectionItem);
+export default connect(null, mapDispatchToProps)(CollectionItem); 
