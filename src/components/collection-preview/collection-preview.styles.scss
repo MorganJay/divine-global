@@ -12,24 +12,5 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-
-    @media (max-width: 800px) {
-      > * + * {
-        margin: 0 0 0 1em;
-      }
-    }
-
-    // children gap styles
-    > * + * + * {
-      margin: 3em 0 0 0;
-
-      &:nth-child(even) {
-        margin-left: 1em;
-      }
-
-      @media (min-width: 1000px) {
-        margin-top: 0;
-      }
-    }
   }
 }
