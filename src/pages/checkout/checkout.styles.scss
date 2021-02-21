@@ -16,20 +16,25 @@
     border-bottom: 1px solid darkgrey;
 
     .header-block {
-      width: 23%;
+      &:nth-child(2) {
+        margin-left: 25px;
+      }
 
-      &:nth-child(2),
       &:nth-child(3) {
-        margin-left: 10px;
+        margin-right: 3px;
       }
 
       &:nth-child(4) {
-        margin-left: 5px;
+        margin-right: 7px;
       }
 
-      &:last-child {
-        width: 8%;
-        margin-right: 18px;
+      &.remove-items {
+        cursor: pointer;
+        user-select: none;
+
+        &:active {
+          color: red;
+        }
       }
     }
   }
