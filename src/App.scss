@@ -1,31 +1,36 @@
 @font-face {
   font-family: 'Benecarlo';
-  src: local("Trebuchet MS"), url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Medium.otf);
+  src: local('Trebuchet MS'),
+    url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Medium.otf);
   font-weight: medium;
 }
 
 @font-face {
   font-family: 'Benecarlo';
-  src: local("Trebuchet MS"), url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Bold.otf);
+  src: local('Trebuchet MS'),
+    url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Bold.otf);
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'Benecarlo';
-  src: local("Trebuchet MS"), url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-MediumItalic.otf);
+  src: local('Trebuchet MS'),
+    url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-MediumItalic.otf);
   font-style: italic;
   font-weight: medium;
 }
 
 @font-face {
   font-family: 'Benecarlo';
-  src: local("Trebuchet MS"), url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Book.otf);
+  src: local('Trebuchet MS'),
+    url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Book.otf);
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'Benecarlo';
-  src: local("Trebuchet MS"), url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Italic.otf);
+  src: local('Trebuchet MS'),
+    url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Italic.otf);
   font-weight: italic;
 }
 
@@ -36,7 +41,7 @@
 }
 
 body {
-  padding: 15px 45px;
+  padding: 15px 40px;
 }
 
 a {

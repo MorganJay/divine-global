@@ -18,7 +18,12 @@
       height: 100%;
     }
   }
-  .name,
+
+  .name {
+    width: 25%;
+    margin-left: 10px;
+  }
+
   .quantity,
   .price {
     width: 23%;
@@ -26,20 +31,23 @@
 
   .quantity {
     display: flex;
-    padding-left: 10px;
+    padding-left: 17px;
     align-items: center;
 
-    .arrow{
+    .arrow {
       cursor: pointer;
     }
 
-    .value{
+    .value {
       margin: 0 10px;
     }
   }
+  .price {
+    padding-left: 10px;
+  }
 
   .remove-button {
-    padding-left: 12px;
+    padding: 0 10px;
     cursor: pointer;
   }
 }
