@@ -12,6 +12,7 @@ import './cart-dropdown.styles.scss';
 
 const CartDropdown = ({ cartItems, history, dispatch }) => (
   <div className="cart-dropdown">
+    {/* <Scrollbars> */}
     <div className="cart-items">
       {cartItems.length ? (
         cartItems.map(cartItem => (
@@ -21,6 +22,7 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
         <span className="empty-message">Your cart is empty</span>
       )}
     </div>
+    {/* </Scrollbars> */}
     <Button
       border
       onClick={() => {

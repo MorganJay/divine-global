@@ -1,3 +1,5 @@
+@import '../../variables';
+
 .collection-preview {
   display: flex;
   flex-direction: column;
@@ -9,8 +11,16 @@
   }
 
   .preview {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 40px;
+
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    @media (min-width: $breakpoint-xl) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
   }
 }
