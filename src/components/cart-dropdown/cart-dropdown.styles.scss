@@ -12,7 +12,11 @@
   right: 40px;
   z-index: 5;
 
-  .empty-message{
+  &:hover {
+    transition: all 5s ease-in;
+  }
+
+  .empty-message {
     font-size: 18px;
     margin: 50px auto;
   }
@@ -22,7 +26,31 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    transition: all 5s ease-in;
+
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb {
+      width: 6px;
+      border-radius: 15px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: transparent;
+      cursor: pointer;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 15px;
+    }
+
+    &:hover {
+      transition: all 5s ease-in;
+      &::-webkit-scrollbar-thumb {
+        transition: all 5s ease-in;
+        background: rgb(75, 74, 74);
+      }
+    }
   }
 
   button {
