@@ -24,9 +24,9 @@ const Header = ({ currentUser, hidden }) => (
       />
     </Link>
     <div className="options">
-      <Link className="option" to="/admin">
+      {/* <Link className="option" to="/admin">
         ADMIN
-      </Link>
+      </Link> */}
       <Link className="option" to="/shop">
         SHOP
       </Link>
