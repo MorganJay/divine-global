@@ -1,3 +1,5 @@
+@import '../../variables';
+
 .menu-item {
   min-width: 300px;
   height: 250px;
@@ -10,7 +12,7 @@
   overflow: hidden;
   position: relative;
 
-  @media (min-width: 1500px) {
+  @media (min-width: $breakpoint-lg) {
     height: 380px;
   }
 
