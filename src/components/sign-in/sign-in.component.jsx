@@ -12,9 +12,15 @@ class SignIn extends Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      showPassword: false
     };
   }
+
+  togglePassword = () => {
+    const { showPassword } = this.state;
+    this.setState({ showPassword: !showPassword });
+  };
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -33,6 +39,7 @@ class SignIn extends Component {
   };
 
   render() {
+    const { email, password, showPassword } = this.state;
     return (
       <div className="sign-in">
         <h2>I already have an account</h2>
@@ -41,25 +48,29 @@ class SignIn extends Component {
           <FormInput
             type="email"
             name="email"
-            value={this.state.email}
+            value={email}
             handleChange={this.handleChange}
             label="Email Address"
             placeholder="Email"
             required
           />
-          
+
           <FormInput
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             name="password"
-            value={this.state.password}
+            value={password}
             handleChange={this.handleChange}
             label="Password"
             placeholder="Password"
+            togglePassword={this.togglePassword}
+            showPassword={this.state.showPassword}
             required
           />
 
           <div className="buttons">
-            <Button type="submit" border>SIGN IN</Button>
+            <Button type="submit" border>
+              SIGN IN
+            </Button>
             <Button onClick={signInWithGoogle} isGoogleSignIn>
               SIGN IN WITH GOOGLE
             </Button>

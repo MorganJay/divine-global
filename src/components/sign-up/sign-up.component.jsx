@@ -15,9 +15,15 @@ class SignUp extends Component {
       displayName: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      showPassword: false,
     };
   }
+
+  togglePassword = () => {
+    const { showPassword } = this.state;
+    this.setState({ showPassword: !showPassword });
+  };
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -28,7 +34,10 @@ class SignUp extends Component {
     }
 
     try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password);
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
       await createUserProfileDocument(user, { displayName });
 
       this.setState({
@@ -48,7 +57,7 @@ class SignUp extends Component {
   };
 
   render() {
-    const { displayName, email, password, confirmPassword } = this.state;
+    const { displayName, email, password, confirmPassword, showPassword } = this.state;
     return (
       <div className="sign-up">
         <h2 className="title">I do not have an account</h2>
@@ -73,24 +82,30 @@ class SignUp extends Component {
             required
           />
           <FormInput
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             name="password"
             value={password}
             onChange={this.handleChange}
             label="Password"
             placeholder="Password"
+            togglePassword={this.togglePassword}
+            showPassword={this.state.showPassword}
             required
           />
           <FormInput
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             name="confirmPassword"
             value={confirmPassword}
             onChange={this.handleChange}
             label="Confirm Password"
             placeholder="Confirm"
+            togglePassword={this.togglePassword}
+            showPassword={this.state.showPassword}
             required
           />
-          <Button type="submit" border>SIGN UP</Button>
+          <Button type="submit" border>
+            SIGN UP
+          </Button>
         </form>
       </div>
     );

@@ -1,7 +1,8 @@
+@import '../../variables';
 .sign-in {
   display: flex;
   flex-direction: column;
-  margin-bottom: 5em;
+  margin-bottom: 6.5em;
 
   span {
     color: grey;
@@ -16,5 +17,10 @@
     justify-content: space-between;
     flex-wrap: wrap;
     height: 52px;
+    gap: 1em;
+
+    @media (min-width: $breakpoint-md) {
+      height: auto;
+    }
   }
 }
