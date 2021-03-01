@@ -5,7 +5,7 @@ const buttonStyles = css`
   color: white;
   border: 1px solid black;
   flex-grow: 0;
-
+  
   &:hover {
     background-color: white;
     color: black;
