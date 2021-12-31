@@ -51,7 +51,6 @@ class SignIn extends Component {
             value={email}
             handleChange={this.handleChange}
             label="Email Address"
-            placeholder="Email"
             required
           />
 
@@ -61,7 +60,6 @@ class SignIn extends Component {
             value={password}
             handleChange={this.handleChange}
             label="Password"
-            placeholder="Password"
             togglePassword={this.togglePassword}
             showPassword={this.state.showPassword}
             required

@@ -15,7 +15,7 @@ export const SignInAndSignUpContainer = styled.div`
   @media (min-width: ${breakpointSm}px) {
     > * {
       flex: 0 1 430px;
-      margin: 1em 3em;
+      margin: 2em 3em;
     }
   }
 
