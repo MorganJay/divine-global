@@ -19,9 +19,9 @@ const CartIcon = ({ toggleCartHidden, itemCount, hidden }) => {
     if (event.key === 'Enter') toggleCartHidden();
   };
 
-  const handleMouseOver = event => {
-    console.log(event);
-  };
+  // const handleMouseOver = event => {
+  //   console.log(event);
+  // };
 
   return (
     <CartContainer

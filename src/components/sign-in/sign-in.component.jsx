@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import FormInput from '../form-input/form-input.component';
-import Button from '../button/button.component';
+import FormInput from "../form-input/form-input.component";
+import Button from "../button/button.component";
 
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
+import { SignInContainer, ButtonsContainer } from "./sign-in.styles";
 
-import './sign-in.styles.scss';
+import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 
 class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      showPassword: false
+      email: "",
+      password: "",
+      showPassword: false,
     };
   }
 
@@ -27,7 +27,7 @@ class SignIn extends Component {
     const { email, password } = this.state;
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      this.setState({ email: '', password: '' });
+      this.setState({ email: "", password: "" });
     } catch (error) {
       alert(error.message);
     }
@@ -41,7 +41,7 @@ class SignIn extends Component {
   render() {
     const { email, password, showPassword } = this.state;
     return (
-      <div className="sign-in">
+      <SignInContainer>
         <h2>I already have an account</h2>
         <span>Sign in with your email and password</span>
         <form onSubmit={this.handleSubmit}>
@@ -56,7 +56,7 @@ class SignIn extends Component {
           />
 
           <FormInput
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             name="password"
             value={password}
             handleChange={this.handleChange}
@@ -67,16 +67,16 @@ class SignIn extends Component {
             required
           />
 
-          <div className="buttons">
+          <ButtonsContainer>
             <Button type="submit" border>
               SIGN IN
             </Button>
             <Button onClick={signInWithGoogle} isGoogleSignIn>
               SIGN IN WITH GOOGLE
             </Button>
-          </div>
+          </ButtonsContainer>
         </form>
-      </div>
+      </SignInContainer>
     );
   }
 }

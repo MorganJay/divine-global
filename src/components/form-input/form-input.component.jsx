@@ -1,7 +1,7 @@
-import React from 'react';
-import ShowPasswordButton from '../button/password-button.styles';
+import React from "react";
 
-import './form-input.styles.scss';
+import ShowPasswordButton from "../button/password-button.styles";
+import { Label, FormGroup, FormInputContainer } from "./form-input.styles";
 
 const FormInput = ({
   handleChange,
@@ -10,24 +10,16 @@ const FormInput = ({
   showPassword,
   ...otherProps
 }) => (
-  <div className="group">
-    {otherProps.name.toLowerCase().includes('password') && otherProps.value ? (
+  <FormGroup>
+    {otherProps.name.toLowerCase().includes("password") && otherProps.value ? (
       <ShowPasswordButton type="button" onClick={togglePassword}>
-        {showPassword ? 'Hide' : 'Show'} Password
+        {showPassword ? "Hide" : "Show"} Password
       </ShowPasswordButton>
     ) : null}
 
-    <input className="form-input" onChange={handleChange} {...otherProps} />
-    {label ? (
-      <label
-        className={`${
-          otherProps.value.length ? 'shrink' : ''
-        } form-input-label`}
-      >
-        {label}
-      </label>
-    ) : null}
-  </div>
+    <FormInputContainer onChange={handleChange} {...otherProps} />
+    {label ? <Label shrink={!!otherProps.value.length}>{label}</Label> : null}
+  </FormGroup>
 );
 
 export default FormInput;

@@ -1,47 +1,43 @@
 @font-face {
-  font-family: 'Benecarlo';
-  src: local('Trebuchet MS'),
+  font-family: "Benecarlo";
+  src: local("Trebuchet MS"),
     url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Medium.otf);
   font-weight: medium;
 }
 
 @font-face {
-  font-family: 'Benecarlo';
-  src: local('Trebuchet MS'),
+  font-family: "Benecarlo";
+  src: local("Trebuchet MS"),
     url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Bold.otf);
   font-weight: bold;
 }
 
 @font-face {
-  font-family: 'Benecarlo';
-  src: local('Trebuchet MS'),
+  font-family: "Benecarlo";
+  src: local("Trebuchet MS"),
     url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-MediumItalic.otf);
   font-style: italic;
   font-weight: medium;
 }
 
 @font-face {
-  font-family: 'Benecarlo';
-  src: local('Trebuchet MS'),
+  font-family: "Benecarlo";
+  src: local("Trebuchet MS"),
     url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Book.otf);
   font-weight: normal;
 }
 
 @font-face {
-  font-family: 'Benecarlo';
-  src: local('Trebuchet MS'),
+  font-family: "Benecarlo";
+  src: local("Trebuchet MS"),
     url(./assets/fonts/Benecarlo/Fontspring-DEMO-Benecarlo-Italic.otf);
   font-weight: italic;
 }
 
 * {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   box-sizing: border-box;
-}
-
-body {
-  // padding: 15px 40px;
 }
 
 a {
