@@ -10,7 +10,8 @@ export const CollectionPreviewContainer = styled.div`
 export const TitleContainer = styled.h1`
   font-size: 28px;
   margin-bottom: 25px;
-
+  max-width: fit-content;
+  cursor: pointer;
   &:hover {
     color: ${subColor};
   }
