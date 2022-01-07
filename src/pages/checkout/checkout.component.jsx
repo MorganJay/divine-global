@@ -20,6 +20,13 @@ import {
   TotalContainer,
 } from "./checkout.styles";
 
+const date = new Date();
+const month = date.getMonth() + 2;
+let expiry = `${month < 10 ? "0" + month : month}/${date
+  .getFullYear()
+  .toString()
+  .slice(2)}`;
+
 const CheckoutPage = ({ cartItems, total, clearAllItems }) => (
   <CheckoutPageContainer>
     <CheckoutHeader>
@@ -48,7 +55,7 @@ const CheckoutPage = ({ cartItems, total, clearAllItems }) => (
     <WarningTextContainer>
       *Please use the following test credit card for payment*
       <br />
-      4242 4242 4242 4242 - Exp: 05/21 -CVV 123
+      4242 4242 4242 4242 - Exp: {expiry} - CVV 123
     </WarningTextContainer>
     <StripeCheckoutButton price={total} />
   </CheckoutPageContainer>
