@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import FormInput from '../form-input/form-input.component';
+import Button from '../button/button.component';
 
-import { SignInContainer, ButtonsContainer } from "./sign-in.styles";
+import { SignInContainer, ButtonsContainer } from './sign-in.styles';
 
 import {
   googleSignInStart,
   emailSignInStart,
-} from "../../redux/user/user.actions";
+} from '../../redux/user/user.actions';
 
 class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       showPassword: false,
     };
   }
@@ -57,7 +57,7 @@ class SignIn extends Component {
           />
 
           <FormInput
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             name="password"
             value={password}
             handleChange={this.handleChange}

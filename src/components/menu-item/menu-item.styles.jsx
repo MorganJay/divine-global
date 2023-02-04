@@ -1,9 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-import { breakpointLg } from "./../../variables.styles";
+import { breakpointLg } from './../../variables.styles';
 
-export const MenuItemContainer = styled.div`
-  height: ${({ size }) => (size ? "380px" : "240px")};
+export const MenuItemContainer = styled(Link)`
+  height: ${({ size }) => (size ? '380px' : '240px')};
   min-width: 300px;
   height: 250px;
   display: flex;

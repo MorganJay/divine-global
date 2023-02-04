@@ -1,21 +1,22 @@
-import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import CartIcon from "../cart-icon/cart-icon.component";
-import CartDropdownContainer from "../cart-dropdown/cart-dropdown.container";
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdownContainer from '../cart-dropdown/cart-dropdown.container';
 import {
   HeaderContainer,
   LogoContainer,
   OptionsContainer,
   OptionLink,
-} from "./header.styles";
+} from './header.styles';
 
-import { auth } from "../../firebase/firebase.utils";
-import { selectCartHidden } from "../../redux/cart/cart.selectors";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { auth } from '../../firebase/firebase.utils';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { signOutStart } from '../../redux/user/user.actions';
 
-import Logo from "../../assets/img/DIVINE-GLOBAL.png";
+import Logo from '../../assets/img/DIVINE-GLOBAL.png';
 
 // create hamburger menu
 
@@ -54,4 +55,8 @@ const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch => ({
+  signOutStart: () => dispatch(signOutStart()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

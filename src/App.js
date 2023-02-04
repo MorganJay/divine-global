@@ -1,43 +1,26 @@
-import { connect } from "react-redux";
-import React, { Component } from "react";
-import { createStructuredSelector } from "reselect";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { createStructuredSelector } from 'reselect';
+import { Routes, Route } from 'react-router-dom';
 
-import "./App.scss";
+import './App.scss';
 
-import Header from "./components/header/header.component.jsx";
-import HomePage from "./pages/homepage/homepage.component";
-import ShopPage from "./pages/shop/shop.component";
-import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
-import CheckoutPage from "./pages/checkout/checkout.component";
+import Header from './components/header/header.component.jsx';
+import HomePage from './pages/homepage/homepage.component';
+import ShopPage from './pages/shop/shop.component';
+import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import CheckoutPage from './pages/checkout/checkout.component';
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { selectCurrentUser } from './redux/user/user.selectors';
+import { checkUserSession } from './redux/user/user.actions';
 
-import { setCurrentUser } from "./redux/user/user.actions";
-import { selectCurrentUser } from "./redux/user/user.selectors";
 class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
+    const { checkUserSession } = this.props;
 
-    // open subscription between our app and Firebase
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-    //   // user authentication object on sign in from Google api when a user is authenticated
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-
-    //     // sends snapshot of data that is currently being stored in our db
-    //     userRef.onSnapshot(snapshot => {
-    //       setCurrentUser({
-    //         id: snapshot.id,
-    //         ...snapshot.data(),
-    //       });
-    //     });
-    //   }
-
-    // setCurrentUser(userAuth);
-    //});
+    checkUserSession();
   }
 
   // componentWillUnmount() {
@@ -48,22 +31,22 @@ class App extends Component {
     return (
       <>
         <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route exact path="/checkout" component={CheckoutPage} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shop/*" element={<ShopPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route
-            exact
             path="/signIn"
             render={() =>
               this.props.currentUser ? (
-                <Redirect to="/" />
+                null
+              // <Redirect to="/" />
               ) : (
                 <SignInAndSignUpPage />
               )
             }
           />
-        </Switch>
+        </Routes>
       </>
     );
   }
@@ -74,7 +57,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user)),
+  checkUserSession: () => dispatch(checkUserSession()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

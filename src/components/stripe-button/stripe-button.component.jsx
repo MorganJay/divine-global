@@ -1,6 +1,6 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
-import Logo from '../../assets/img/DIVINE-GLOBAL.png'
+import Logo from '../../assets/img/DIVINE-GLOBAL.png';
 
 const StripeCheckoutButton = ({ price }) => {
   const priceForStripe = price * 100;
@@ -9,7 +9,7 @@ const StripeCheckoutButton = ({ price }) => {
 
   const onToken = token => {
     console.log(token);
-    alert('Payment Successful')
+    alert('Payment Successful');
   };
 
   return (

@@ -1,18 +1,17 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
+import React from 'react';
+
+import WithRouter from './../with-router/with-router.component';
+
 import {
   MenuItemContainer,
   Title,
   BackgroundImage,
   Subtitle,
   Content,
-} from "./menu-item.styles";
+} from './menu-item.styles';
 
-const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
-  <MenuItemContainer
-    size={size}
-    onClick={() => history.push(`${match.url}${linkUrl}`)}
-  >
+const MenuItem = ({ title, imageUrl, size, linkUrl, router }) => (
+  <MenuItemContainer size={size} to={`${router.location.pathname}${linkUrl}`}>
     <BackgroundImage imageUrl={imageUrl} />
     <Content>
       <Title>{title}</Title>
@@ -21,4 +20,4 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
   </MenuItemContainer>
 );
 
-export default withRouter(MenuItem);
+export default WithRouter(MenuItem);
