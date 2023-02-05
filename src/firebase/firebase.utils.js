@@ -3,14 +3,15 @@ import {
   collection,
   doc,
   getDoc,
+  setDoc,
   getFirestore,
   getDocs,
-  setDoc,
 } from 'firebase/firestore';
 import {
   getAuth,
   signInWithPopup,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   GoogleAuthProvider,
 } from 'firebase/auth';
 
@@ -33,19 +34,16 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   // document Reference object
   const userRef = doc(firestore, 'users', userAuth.uid);
-  //const collectionRef = firestore.collection("users");
 
   // document SnapShot object
   const snapshot = await getDoc(userRef);
-  // const collectionSnapshot = await collectionRef.get();
-  // console.log({ collection: collectionSnapshot.docs.map(doc => doc.data()) });
-  if (!snapshot.exists) {
+
+  if (!snapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
     // create data if data isn't available at that the reference
-    const usersRef = collection(firestore, 'users');
     try {
-      await userRef.set({
+      await setDoc(userRef, {
         displayName,
         email,
         createdAt,
@@ -106,6 +104,9 @@ export const auth = getAuth();
 export const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({ prompt: 'select_account' });
+
+export const createUser = (email, password) =>
+  createUserWithEmailAndPassword(auth, email, password);
 
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);

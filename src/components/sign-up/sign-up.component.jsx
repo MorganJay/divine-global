@@ -1,21 +1,24 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import FormInput from '../form-input/form-input.component';
+import Button from '../button/button.component';
 
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import { signUpStart } from '../../redux/user/user.actions';
+import { selectUserLoading } from '../../redux/user/user.selectors';
 
-import { SignUpContainer } from "./sign-up.styles";
+import { SignUpContainer } from './sign-up.styles';
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      displayName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      displayName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
       showPassword: false,
     };
   }
@@ -33,19 +36,10 @@ class SignUp extends Component {
       return;
     }
 
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await createUserProfileDocument(user, { displayName });
+    const { signUpStart } = this.props;
 
-      this.setState({
-        displayName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
+    try {
+      signUpStart({ displayName, email, password });
     } catch (error) {
       alert(error.message);
     }
@@ -59,6 +53,7 @@ class SignUp extends Component {
   render() {
     const { displayName, email, password, confirmPassword, showPassword } =
       this.state;
+    const { loading } = this.props;
     return (
       <SignUpContainer>
         <h2>I do not have an account</h2>
@@ -75,32 +70,34 @@ class SignUp extends Component {
           <FormInput
             type="email"
             name="email"
+            autoComplete="off"
             value={email}
             onChange={this.handleChange}
             label="Email Address"
             required
           />
           <FormInput
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             name="password"
             value={password}
+            autoComplete="off"
             onChange={this.handleChange}
             label="Password"
             togglePassword={this.togglePassword}
-            showPassword={this.state.showPassword}
+            showPassword={showPassword}
             required
           />
           <FormInput
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             name="confirmPassword"
             value={confirmPassword}
             onChange={this.handleChange}
             label="Confirm Password"
             togglePassword={this.togglePassword}
-            showPassword={this.state.showPassword}
+            showPassword={showPassword}
             required
           />
-          <Button type="submit" border>
+          <Button type="submit" title="Sign up here" loading={loading} border>
             SIGN UP
           </Button>
         </form>
@@ -109,4 +106,12 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = createStructuredSelector({
+  loading: selectUserLoading,
+});
+
+const mapDispatchToProps = dispatch => ({
+  signUpStart: userCredentials => dispatch(signUpStart(userCredentials)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

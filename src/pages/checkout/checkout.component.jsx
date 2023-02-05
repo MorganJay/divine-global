@@ -1,15 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import CheckoutItem from "../../components/checkout-item/checkout-item.component";
-import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
+import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component';
 
 import {
   selectCartItems,
   selectCartTotal,
-} from "../../redux/cart/cart.selectors";
-import { clearAllItemsFromCart } from "../../redux/cart/cart.actions";
+} from '../../redux/cart/cart.selectors';
+import { clearCart } from '../../redux/cart/cart.actions';
 
 import {
   CheckoutHeader,
@@ -18,11 +18,11 @@ import {
   RemoveItemContainer,
   WarningTextContainer,
   TotalContainer,
-} from "./checkout.styles";
+} from './checkout.styles';
 
 const date = new Date();
 const month = date.getMonth() + 2;
-let expiry = `${month < 10 ? "0" + month : month}/${date
+let expiry = `${month < 10 ? '0' + month : month}/${date
   .getFullYear()
   .toString()
   .slice(2)}`;
@@ -42,7 +42,7 @@ const CheckoutPage = ({ cartItems, total, clearAllItems }) => (
       <HeaderBlock>
         <span>Price</span>
       </HeaderBlock>
-      <RemoveItemContainer onClick={() => clearAllItems(cartItems)}>
+      <RemoveItemContainer onClick={clearAllItems}>
         <span>Clear All</span>
       </RemoveItemContainer>
     </CheckoutHeader>
@@ -67,7 +67,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  clearAllItems: items => dispatch(clearAllItemsFromCart(items)),
+  clearAllItems: () => dispatch(clearCart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage);

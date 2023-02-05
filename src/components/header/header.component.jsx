@@ -11,7 +11,6 @@ import {
   OptionLink,
 } from './header.styles';
 
-import { auth } from '../../firebase/firebase.utils';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
@@ -20,7 +19,7 @@ import Logo from '../../assets/img/DIVINE-GLOBAL.png';
 
 // create hamburger menu
 
-const Header = ({ currentUser, hidden }) => (
+const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
     <LogoContainer to="/">
       <img
@@ -38,7 +37,7 @@ const Header = ({ currentUser, hidden }) => (
       <OptionLink to="/shop">SHOP</OptionLink>
       <OptionLink to="/shop">CONTACT</OptionLink>
       {currentUser ? (
-        <OptionLink as="div" tabIndex="0" onClick={() => auth.signOut()}>
+        <OptionLink as="div" tabIndex="0" onClick={signOutStart}>
           SIGN OUT
         </OptionLink>
       ) : (

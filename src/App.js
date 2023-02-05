@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { createStructuredSelector } from 'reselect';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import './App.scss';
 
@@ -37,10 +37,9 @@ class App extends Component {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route
             path="/signIn"
-            render={() =>
+            element={
               this.props.currentUser ? (
-                null
-              // <Redirect to="/" />
+                <Navigate to="/" replace />
               ) : (
                 <SignInAndSignUpPage />
               )
