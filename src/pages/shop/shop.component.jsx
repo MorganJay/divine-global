@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
@@ -12,29 +12,20 @@ const ShopPageContainer = styled.div`
   padding: 7rem 2rem 1rem;
 `;
 
-class ShopPage extends React.Component {
-  componentDidMount() {
-    const { fetchCollectionsStart } = this.props;
+const ShopPage = ({ fetchCollectionsStart }) => {
+  useEffect(() => {
     fetchCollectionsStart();
-  }
+  }, [fetchCollectionsStart]);
 
-  render() {
-    return (
-      <ShopPageContainer>
-        <Routes>
-          <Route
-            path="/"
-            element={<CollectionsOverviewContainer />}
-          />
-          <Route
-            path="/:collectionId"
-            element={<CollectionPageContainer />}
-          />
-        </Routes>
-      </ShopPageContainer>
-    );
-  }
-}
+  return (
+    <ShopPageContainer>
+      <Routes>
+        <Route path="/" element={<CollectionsOverviewContainer />} />
+        <Route path="/:collectionId" element={<CollectionPageContainer />} />
+      </Routes>
+    </ShopPageContainer>
+  );
+};
 
 const mapDispatchToProps = dispatch => ({
   fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),

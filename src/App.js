@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { Routes, Route, Navigate } from 'react-router-dom';
-
-import './App.scss';
 
 import Header from './components/header/header.component.jsx';
 import HomePage from './pages/homepage/homepage.component';
@@ -14,42 +12,30 @@ import CheckoutPage from './pages/checkout/checkout.component';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
 
-class App extends Component {
-  unsubscribeFromAuth = null;
+import './App.scss';
 
-  componentDidMount() {
-    const { checkUserSession } = this.props;
-
+const App = ({ checkUserSession, currentUser }) => {
+  useEffect(() => {
     checkUserSession();
-  }
+  }, [checkUserSession]);
 
-  // componentWillUnmount() {
-  //   this.unsubscribeFromAuth();
-  // }
-
-  render() {
-    return (
-      <>
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/shop/*" element={<ShopPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route
-            path="/signIn"
-            element={
-              this.props.currentUser ? (
-                <Navigate to="/" replace />
-              ) : (
-                <SignInAndSignUpPage />
-              )
-            }
-          />
-        </Routes>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/shop/*" element={<ShopPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route
+          path="/signIn"
+          element={
+            currentUser ? <Navigate to="/" replace /> : <SignInAndSignUpPage />
+          }
+        />
+      </Routes>
+    </>
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,

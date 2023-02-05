@@ -6,6 +6,7 @@ import {
   setDoc,
   getFirestore,
   getDocs,
+  onSnapshot,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -119,3 +120,6 @@ export const getCollectionRef = collectionKey =>
 
 export const getSnapshot = async collectionKey =>
   await getDocs(collection(firestore, collectionKey));
+
+export const addListener = collectionKey => observer =>
+  onSnapshot(collection(firestore, collectionKey), observer);
