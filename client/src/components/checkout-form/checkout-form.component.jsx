@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import * as Sentry from '@sentry/react';
 import { useSelector } from 'react-redux';
 import {
   PaymentElement,
@@ -58,26 +59,35 @@ const CheckoutForm = () => {
   };
 
   return (
-    <Form id="payment-form" onSubmit={handleSubmit}>
-      <Input
-        type="email"
-        id="email"
-        value={payerEmail}
-        onChange={e => setEmail(e.target.value)}
-        placeholder="Enter email address"
-      />
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <PayNowButton
-        type="submit"
-        disabled={isLoading || !stripe || !elements}
-        id="submit"
-      >
-        <span id="button-text">
-          {isLoading ? <Spinner className="spinner" /> : 'Pay now'}
-        </span>
-      </PayNowButton>
-      {message && <PaymentMessage>{message}</PaymentMessage>}
-    </Form>
+    <Sentry.ErrorBoundary
+      fallback={
+        <h1>
+          An error occurred with the payment form, please hold on as our
+          engineers are checking it 💪
+        </h1>
+      }
+    >
+      <Form id="payment-form" onSubmit={handleSubmit}>
+        <Input
+          type="email"
+          id="email"
+          value={payerEmail}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="Enter email address"
+        />
+        <PaymentElement id="payment-element" options={paymentElementOptions} />
+        <PayNowButton
+          type="submit"
+          disabled={isLoading || !stripe || !elements}
+          id="submit"
+        >
+          <span id="button-text">
+            {isLoading ? <Spinner className="spinner" /> : 'Pay now'}
+          </span>
+        </PayNowButton>
+        {message && <PaymentMessage>{message}</PaymentMessage>}
+      </Form>
+    </Sentry.ErrorBoundary>
   );
 };
 

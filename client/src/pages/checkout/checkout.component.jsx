@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { connect } from 'react-redux';
+import * as Sentry from '@sentry/react';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
@@ -69,47 +70,55 @@ const CheckoutPage = ({ cartItems, total, clearAllItems }) => {
   };
 
   return (
-    <CheckoutPageContainer>
-      {!isPaymentStatusRoute && (
-        <div>
-          <CheckoutHeader>
-            <HeaderBlock>
-              <span>Product</span>
-            </HeaderBlock>
-            <HeaderBlock>
-              <span>Description</span>
-            </HeaderBlock>
-            <HeaderBlock>
-              <span>Quantity</span>
-            </HeaderBlock>
-            <HeaderBlock>
-              <span>Price</span>
-            </HeaderBlock>
-            <RemoveItemContainer onClick={clearAllItems}>
-              <span>Clear All</span>
-            </RemoveItemContainer>
-          </CheckoutHeader>
-          {cartItems.map(cartItem => (
-            <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-          ))}
-          <TotalContainer>
-            <span>TOTAL: &#36;{total}</span>
-          </TotalContainer>
-          <WarningTextContainer>
-            *Please use the following test credit card for payment*
-            <br />
-            4242 4242 4242 4242 - Exp: {expiry} - CVV 123
-          </WarningTextContainer>
-        </div>
-      )}
-      {clientSecret ? (
-        <Elements options={options} stripe={stripePromise}>
-          {isPaymentStatusRoute ? <PaymentStatus /> : <CheckoutForm />}
-        </Elements>
-      ) : (
-        <Spinner />
-      )}
-    </CheckoutPageContainer>
+    <Sentry.ErrorBoundary
+      fallback={
+        <h1>
+          An error occurred please hold on as our engineers are checking it 💪
+        </h1>
+      }
+    >
+      <CheckoutPageContainer>
+        {!isPaymentStatusRoute && (
+          <div>
+            <CheckoutHeader>
+              <HeaderBlock>
+                <span>Product</span>
+              </HeaderBlock>
+              <HeaderBlock>
+                <span>Description</span>
+              </HeaderBlock>
+              <HeaderBlock>
+                <span>Quantity</span>
+              </HeaderBlock>
+              <HeaderBlock>
+                <span>Price</span>
+              </HeaderBlock>
+              <RemoveItemContainer onClick={clearAllItems}>
+                <span>Clear All</span>
+              </RemoveItemContainer>
+            </CheckoutHeader>
+            {cartItems.map(cartItem => (
+              <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+            ))}
+            <TotalContainer>
+              <span>TOTAL: &#36;{total}</span>
+            </TotalContainer>
+            <WarningTextContainer>
+              *Please use the following test credit card for payment*
+              <br />
+              4242 4242 4242 4242 - Exp: {expiry} - CVV 123
+            </WarningTextContainer>
+          </div>
+        )}
+        {clientSecret ? (
+          <Elements options={options} stripe={stripePromise}>
+            {isPaymentStatusRoute ? <PaymentStatus /> : <CheckoutForm />}
+          </Elements>
+        ) : (
+          <Spinner />
+        )}
+      </CheckoutPageContainer>
+    </Sentry.ErrorBoundary>
   );
 };
 
