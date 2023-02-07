@@ -5,8 +5,10 @@ import React, { useState, useEffect } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { createStructuredSelector } from 'reselect';
 
+import Spinner from './../../components/loader/spinner.component';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 import CheckoutForm from '../../components/checkout-form/checkout-form.component';
+import PaymentStatus from '../../components/payment-status/payment-status.component';
 
 import {
   selectCartItems,
@@ -36,19 +38,21 @@ const CheckoutPage = ({ cartItems, total, clearAllItems }) => {
   const [clientSecret, setClientSecret] = useState('');
 
   useEffect(() => {
-    axios({
-      url: process.env.REACT_APP_BASE_URL + 'create-payment-intent',
-      method: 'POST',
-      data: {
-        items: cartItems,
-      },
-    })
-      .then(({ data }) => {
-        setClientSecret(data.clientSecret);
+    if (cartItems.length) {
+      axios({
+        url: process.env.REACT_APP_BASE_URL + 'create-payment-intent',
+        method: 'POST',
+        data: {
+          items: cartItems,
+        },
       })
-      .catch(error => {
-        console.log('Payment intent error', JSON.parse(error));
-      });
+        .then(({ data }) => {
+          setClientSecret(data.clientSecret);
+        })
+        .catch(error => {
+          console.log('Payment intent error', JSON.parse(error));
+        });
+    }
   }, [cartItems]);
 
   const appearance = {
@@ -59,41 +63,47 @@ const CheckoutPage = ({ cartItems, total, clearAllItems }) => {
     clientSecret,
     appearance,
   };
-
+  const isPaymentStatusRoute = window.location.pathname.endsWith('status');
   return (
     <CheckoutPageContainer>
-      <CheckoutHeader>
-        <HeaderBlock>
-          <span>Product</span>
-        </HeaderBlock>
-        <HeaderBlock>
-          <span>Description</span>
-        </HeaderBlock>
-        <HeaderBlock>
-          <span>Quantity</span>
-        </HeaderBlock>
-        <HeaderBlock>
-          <span>Price</span>
-        </HeaderBlock>
-        <RemoveItemContainer onClick={clearAllItems}>
-          <span>Clear All</span>
-        </RemoveItemContainer>
-      </CheckoutHeader>
-      {cartItems.map(cartItem => (
-        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-      ))}
-      <TotalContainer>
-        <span>TOTAL: &#36;{total}</span>
-      </TotalContainer>
-      <WarningTextContainer>
-        *Please use the following test credit card for payment*
-        <br />
-        4242 4242 4242 4242 - Exp: {expiry} - CVV 123
-      </WarningTextContainer>
-      {clientSecret && (
+      {!isPaymentStatusRoute && (
+        <div>
+          <CheckoutHeader>
+            <HeaderBlock>
+              <span>Product</span>
+            </HeaderBlock>
+            <HeaderBlock>
+              <span>Description</span>
+            </HeaderBlock>
+            <HeaderBlock>
+              <span>Quantity</span>
+            </HeaderBlock>
+            <HeaderBlock>
+              <span>Price</span>
+            </HeaderBlock>
+            <RemoveItemContainer onClick={clearAllItems}>
+              <span>Clear All</span>
+            </RemoveItemContainer>
+          </CheckoutHeader>
+          {cartItems.map(cartItem => (
+            <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+          ))}
+          <TotalContainer>
+            <span>TOTAL: &#36;{total}</span>
+          </TotalContainer>
+          <WarningTextContainer>
+            *Please use the following test credit card for payment*
+            <br />
+            4242 4242 4242 4242 - Exp: {expiry} - CVV 123
+          </WarningTextContainer>
+        </div>
+      )}
+      {clientSecret ? (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          {isPaymentStatusRoute ? <PaymentStatus /> : <CheckoutForm />}
         </Elements>
+      ) : (
+        <Spinner />
       )}
     </CheckoutPageContainer>
   );

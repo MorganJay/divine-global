@@ -15,7 +15,7 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import './App.scss';
 
 const App = ({ checkUserSession, currentUser }) => {
-  useEffect(() => { 
+  useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
 
@@ -25,7 +25,7 @@ const App = ({ checkUserSession, currentUser }) => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop/*" element={<ShopPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/checkout/*" element={<CheckoutPage />} />
         <Route
           path="/signIn"
           element={

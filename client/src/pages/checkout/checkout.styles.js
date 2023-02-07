@@ -1,13 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { breakpointMd } from "../../variables.styles";
+import { breakpointMd } from '../../variables.styles';
 
 export const CheckoutPageContainer = styled.div`
-  width: 90%;
+  width: 100%;
   min-height: 90vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
   margin: 50px auto 0px;
   padding: 4rem 0;
 
@@ -16,7 +16,7 @@ export const CheckoutPageContainer = styled.div`
   }
 
   @media (min-width: ${breakpointMd}px) {
-    width: 55%;
+    width: 90%;
   }
 `;
 
@@ -63,6 +63,7 @@ export const TotalContainer = styled.div`
   margin-top: 30px;
   margin-left: auto;
   font-size: 36px;
+  text-align: right;
 `;
 
 export const WarningTextContainer = styled.div`
