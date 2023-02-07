@@ -10,7 +10,13 @@ import { useNavigate } from 'react-router-dom';
 import { clearCart } from '../../redux/cart/cart.actions';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-import './checkout-form.styles.css';
+import {
+  Form,
+  Input,
+  PaymentMessage,
+  PayNowButton,
+  Spinner,
+} from './checkout-form.styles';
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -73,9 +79,12 @@ const CheckoutForm = () => {
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: process.env.REACT_APP_REDIRECT_URL,
+        redirect: 'if_required',
         receipt_email: payerEmail,
       },
     });
+
+    console.log({ error });
 
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, your customer will be redirected to
@@ -96,8 +105,8 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <input
+    <Form id="payment-form" onSubmit={handleSubmit}>
+      <Input
         type="email"
         id="email"
         value={payerEmail}
@@ -105,14 +114,18 @@ const CheckoutForm = () => {
         placeholder="Enter email address"
       />
       <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <PayNowButton
+        type="submit"
+        disabled={isLoading || !stripe || !elements}
+        id="submit"
+      >
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : 'Pay now'}
+          {isLoading ? <Spinner className="spinner" /> : 'Pay now'}
         </span>
-      </button>
+      </PayNowButton>
       {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
-    </form>
+      {message && <PaymentMessage>{message}</PaymentMessage>}
+    </Form>
   );
 };
 
