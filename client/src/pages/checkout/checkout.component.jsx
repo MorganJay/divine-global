@@ -37,7 +37,7 @@ const CheckoutPage = ({ cartItems, total, clearAllItems }) => {
 
   useEffect(() => {
     axios({
-      url: 'create-payment-intent',
+      url: process.env.REACT_APP_BASE_URL + 'create-payment-intent',
       method: 'POST',
       data: {
         items: cartItems,
