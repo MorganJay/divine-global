@@ -1,5 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
+
+import { addItem } from '../../redux/cart/cart.actions';
 
 import {
   ImageContainer,
@@ -8,9 +10,8 @@ import {
   NameContainer,
   PriceContainer,
   AddButton,
-} from "./collection-item.styles";
+} from './collection-item.styles';
 
-import { addItem } from "../../redux/cart/cart.actions";
 
 const CollectionItem = ({ item, addItem }) => {
   const { name, price, imageUrl } = item;
@@ -19,7 +20,7 @@ const CollectionItem = ({ item, addItem }) => {
       <ImageContainer imageUrl={imageUrl} />
       <CollectionFooterContainer>
         <NameContainer>{name}</NameContainer>
-        <PriceContainer>&#8358;{price}</PriceContainer>
+        <PriceContainer>${price}</PriceContainer>
       </CollectionFooterContainer>
       <AddButton
         onClick={() => {

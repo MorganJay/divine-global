@@ -67,7 +67,7 @@ export const TotalContainer = styled.div`
 
 export const WarningTextContainer = styled.div`
   text-align: center;
-  margin-top: 40px;
+  margin: 40px auto;
   font-size: 24px;
   color: red;
 `;
