@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
-import React, { useState, useEffect } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { createStructuredSelector } from 'reselect';
 
@@ -36,9 +37,12 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 const CheckoutPage = ({ cartItems, total, clearAllItems }) => {
   const [clientSecret, setClientSecret] = useState('');
+  const { pathname } = useLocation();
+
+  const isPaymentStatusRoute = pathname.endsWith('status');
 
   useEffect(() => {
-    if (cartItems.length) {
+    if (cartItems.length && !isPaymentStatusRoute) {
       axios({
         url: process.env.REACT_APP_BASE_URL + 'create-payment-intent',
         method: 'POST',
@@ -53,7 +57,7 @@ const CheckoutPage = ({ cartItems, total, clearAllItems }) => {
           console.log('Payment intent error', JSON.parse(error));
         });
     }
-  }, [cartItems]);
+  }, [cartItems, isPaymentStatusRoute]);
 
   const appearance = {
     theme: 'stripe',
@@ -63,7 +67,7 @@ const CheckoutPage = ({ cartItems, total, clearAllItems }) => {
     clientSecret,
     appearance,
   };
-  const isPaymentStatusRoute = window.location.pathname.endsWith('status');
+
   return (
     <CheckoutPageContainer>
       {!isPaymentStatusRoute && (
