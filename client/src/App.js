@@ -44,7 +44,12 @@ const App = ({ checkUserSession, currentUser }) => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/shop/*" element={<ShopPage />} />
-          <Route path="/checkout/*" element={<CheckoutPage />} />
+          <Route
+            path="/checkout/*"
+            element={
+              currentUser ? <CheckoutPage /> : <Navigate to="/signIn" replace />
+            }
+          />
           <Route
             path="/signIn"
             element={

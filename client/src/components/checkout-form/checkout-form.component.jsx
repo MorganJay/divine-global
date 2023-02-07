@@ -20,9 +20,9 @@ import {
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const { email } = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser);
 
-  const [payerEmail, setEmail] = useState(email || '');
+  const [payerEmail, setEmail] = useState(currentUser?.email || '');
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
